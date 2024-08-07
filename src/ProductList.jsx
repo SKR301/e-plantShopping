@@ -212,54 +212,58 @@ function ProductList() {
             ]
         }
     ];
-   const styleObj={
-    backgroundColor: '#4CAF50',
-    color: '#fff!important',
-    padding: '15px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignIems: 'center',
-    fontSize: '20px',
-   }
-   const styleObjUl={
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '1100px',
-   }
-   const styleA={
-    color: 'white',
-    fontSize: '30px',
-    textDecoration: 'none',
-   }
-   const handleCartClick = (e) => {
-    e.preventDefault();
-    setShowCart(true); // Set showCart to true when cart icon is clicked
-};
-const handlePlantsClick = (e) => {
-    e.preventDefault();
-    setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
-    setShowCart(false); // Hide the cart when navigating to About Us
-};
+    const styleObj={
+        backgroundColor: '#4CAF50',
+        color: '#fff!important',
+        padding: '15px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignIems: 'center',
+        fontSize: '20px',
+    }
+    const styleObjUl={
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '1100px',
+    }
+    const styleA={
+        color: 'white',
+        fontSize: '30px',
+        textDecoration: 'none',
+    }
+    const plantCard={
+        bgColor: 'white'
+    }
 
+   const handleCartClick = (e) => {
+        e.preventDefault();
+        setShowCart(true); // Set showCart to true when cart icon is clicked
+    };
+    const handlePlantsClick = (e) => {
+        e.preventDefault();
+        setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
+        setShowCart(false); // Hide the cart when navigating to About Us
+    };
    const handleContinueShopping = (e) => {
-    e.preventDefault();
-    setShowCart(false);
-  };
+        e.preventDefault();
+        setShowCart(false);
+    };
+
     return (
         <div>
-             <div className="navbar" style={styleObj}>
-            <div className="tag">
-               <div className="luxury">
-               <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
-               <a href="/" style={{textDecoration:'none'}}>
+            <div className="navbar" style={styleObj}>
+                <div className="tag">
+                <div className="luxury">
+                    <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
+                    <a href="/" style={{textDecoration:'none'}}>
                         <div>
-                    <h3 style={{color:'white'}}>Paradise Nursery</h3>
-                    <i style={{color:'white'}}>Where Green Meets Serenity</i>
-                    </div>
+                            <h3 style={{color:'white'}}>Paradise Nursery</h3>
+                            <i style={{color:'white'}}>Where Green Meets Serenity</i>
+                        </div>
                     </a>
                 </div>
-              
+                
             </div>
             <div style={styleObjUl}>
                 <div> <a href="#" onClick={(e)=>handlePlantsClick(e)} style={styleA}>Plants</a></div>
@@ -267,14 +271,29 @@ const handlePlantsClick = (e) => {
             </div>
         </div>
         {!showCart? (
-        <div className="product-grid">
-
-
+            <div className="product-grid">
+                {plantsArray.map(plantsGrp => (
+                    <div className='plant-category'>
+                        <br />
+                        <h1 style={{borderTop: '1px solid', borderBottom: '1px solid'}}>{plantsGrp.category}</h1>
+                        <br /><br />
+                        {
+                            plantsGrp.plants.map(plants => (
+                                <div style={plantCard}>
+                                    <h1>{plants.name}</h1>
+                                    <img src={plants.image} width="200" height="200"/>
+                                    <h6>{plants.cost}</h6>
+                                    <p>{plants.description}</p>
+                                </div>
+                            ))
+                        }
+                    </div>
+                ))};
+            </div>
+            ) : (
+                <CartItem onContinueShopping={handleContinueShopping}/>
+            )}
         </div>
- ) :  (
-    <CartItem onContinueShopping={handleContinueShopping}/>
-)}
-    </div>
     );
 }
 
