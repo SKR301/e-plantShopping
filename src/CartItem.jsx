@@ -41,6 +41,7 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleRemove = (item) => {
+    // TODO:- fix to re-enable button
     dispatch(removeItem(item.name));
   };
 
