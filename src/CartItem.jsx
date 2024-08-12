@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
@@ -9,10 +9,14 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
-    return cart.reduce((sum, plant) => {
-        const cost = parseFloat(plant.cost.replace('$', ''));
-        return sum + cost;
-      }, 0);
+    console.log('clicked');
+    var total = 0;
+    cart.map((plant) => {
+        var cost = parseFloat(plant.cost.replace('$', ''));
+        total = total + (plant.quantity * cost);
+    });
+    
+    return total;
   };
 
   const handleContinueShopping = (e) => {
@@ -22,20 +26,28 @@ const CartItem = ({ onContinueShopping }) => {
       }
   };
 
-  const handleIncrement = (item) => {
+  const handleCheckoutShopping = (e) => {
+    alert('Functionality to be added for future reference');
+  };
 
+  const handleIncrement = (item) => {
+    dispatch(updateQuantity({name: item.name, quantity: item.quantity+1}));
   };
 
   const handleDecrement = (item) => {
-   
+   if(item.quantity > 1 ){
+    dispatch(updateQuantity({name: item.name, quantity: item.quantity-1}));
+   }
   };
 
   const handleRemove = (item) => {
+    dispatch(removeItem(item.name));
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
-
+    const cost = parseFloat(item.cost.replace('$', ''));
+    return cost*item.quantity;
   };
 
   return (
@@ -63,7 +75,7 @@ const CartItem = ({ onContinueShopping }) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={(e) => handleCheckoutShopping(e)}>Checkout</button>
       </div>
     </div>
   );
