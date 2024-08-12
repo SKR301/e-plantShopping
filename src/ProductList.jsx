@@ -239,7 +239,7 @@ function ProductList() {
         display: 'flex',
         justifyContent: 'flex-end',
     }
-   const handleCartClick = (e) => {
+    const handleCartClick = (e) => {
         e.preventDefault();
         setShowCart(true); // Set showCart to true when cart icon is clicked
     };
@@ -300,9 +300,8 @@ function ProductList() {
                                     <div className="product-title">{plant.name}</div>
                                     <h2 className="product-cost" style={{color: 'red'}}>{plant.cost}</h2>
                                     <div className="product-description">{plant.description}</div>
-                                    {/*Similarly like the above plant.name show other details like description and cost*/}
                                     <br />
-                                    <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                    <button className="product-button" onClick={() => handleAddToCart(plant)} disabled={addedToCart[plant.name]==true}>Add to Cart</button>
                                 </div>
                                 ))}
                             </div>
