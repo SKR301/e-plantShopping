@@ -301,7 +301,7 @@ function ProductList() {
                                     <h2 className="product-cost" style={{color: 'red'}}>{plant.cost}</h2>
                                     <div className="product-description">{plant.description}</div>
                                     <br />
-                                    <button className="product-button" onClick={() => handleAddToCart(plant)} disabled={addedToCart[plant.name]==true}>Add to Cart</button>
+                                    <button className="product-button" style={addedToCart[plant.name]==true?{backgroundColor:'grey'}:{backgroundColor:'green'}} onClick={() => handleAddToCart(plant)} disabled={addedToCart[plant.name]==true}>Add to Cart</button>
                                 </div>
                                 ))}
                             </div>
