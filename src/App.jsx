@@ -26,7 +26,7 @@ function App() {
           <div className="aboutus_container">
           <AboutUs/>
           <button className="get-started-button" onClick={handleGetStartedClick}>
-            Get Started
+            Buy Some Plants
           </button>
           </div>
           </div>

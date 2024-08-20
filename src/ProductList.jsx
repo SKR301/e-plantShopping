@@ -219,7 +219,7 @@ function ProductList() {
         }
     ];
    const styleObj={
-        backgroundColor: '#4CAF50',
+        backgroundColor: '#000',
         color: '#fff!important',
         padding: '15px',
         display: 'flex',
@@ -277,7 +277,7 @@ function ProductList() {
                     </div>
                 </div>
                 <div style={styleObjUl}>
-                    <div> <a href="#" onClick={(e) => handlePlantsClick(e)} style={styleA}>Plants</a></div>
+                    <div> <a href="#" onClick={(e) => handlePlantsClick(e)} style={styleA}>e-Plantery</a></div>
                     <div>
                         <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}>
                             <h1 className='cart'>
@@ -303,7 +303,7 @@ function ProductList() {
                                     <h2 className="product-cost" style={{color: 'red'}}>{plant.cost}</h2>
                                     <div className="product-description">{plant.description}</div>
                                     <br />
-                                    <button className="product-button" style={addedToCart[plant.name]==true?{backgroundColor:'grey'}:{backgroundColor:'green'}} onClick={() => handleAddToCart(plant)} disabled={addedToCart[plant.name]==true}>Add to Cart</button>
+                                    <button className="product-button" style={addedToCart[plant.name]==true?{backgroundColor:'grey'}:{backgroundColor:'brown'}} onClick={() => handleAddToCart(plant)} disabled={addedToCart[plant.name]==true}>Add to Cart</button>
                                 </div>
                                 ))}
                             </div>
