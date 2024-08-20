@@ -9,7 +9,6 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
-    console.log('clicked');
     var total = 0;
     cart.map((plant) => {
         var cost = parseFloat(plant.cost.replace('$', ''));
